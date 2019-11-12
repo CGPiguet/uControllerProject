@@ -1,0 +1,17 @@
+lcd_driver.c:91:13:chipSelect	16	static
+lcd_driver.c:96:13:registerSelect	16	static
+lcd_driver.c:101:13:displayReset	8	static
+lcd_driver.c:110:13:sendInstruction	16	static
+lcd_driver.c:120:17:sendData	16	static
+lcd_driver.c:128:6:lcd_setContrast	16	static
+lcd_driver.c:139:6:lcd_init	8	static
+lcd_driver.c:154:6:lcd_setPixel	16	static
+lcd_driver.c:164:6:lcd_clear	16	static
+lcd_driver.c:172:6:lcd_setChar	32	static
+lcd_driver.c:190:6:lcd_setString	32	static
+lcd_driver.c:202:6:lcd_setLine	56	static
+lcd_driver.c:232:6:lcd_show	16	static
+lcd_driver.c:243:6:lcd_setFrame	32	static
+lcd_driver.c:256:6:lcd_setBar	32	static
+lcd_driver.c:264:6:lcd_setSymbol8	32	static
+lcd_driver.c:275:6:lcd_setBackgroundLight	16	static

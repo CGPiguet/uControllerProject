@@ -1,0 +1,3 @@
+button_driver.c:4:13:InputFilter_sample	24	static
+button_driver.c:26:13:InputFilter_getEdge	24	static
+button_driver.c:33:9:InputFilter_init	24	static

@@ -1,0 +1,3 @@
+button.c:10:13:Button_sample	16	static
+button.c:15:13:Button_getEdge	16	static
+button.c:20:9:Button_init	24	static

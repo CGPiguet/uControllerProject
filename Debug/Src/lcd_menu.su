@@ -1,0 +1,8 @@
+lcd_menu.c:9:6:menu_setMainMenu	16	static
+lcd_menu.c:17:13:renderingScrollBar	24	static
+lcd_menu.c:40:13:renderingMenuPage	56	static
+lcd_menu.c:66:13:renderingMenu	24	static
+lcd_menu.c:81:6:menu_registerDrawMenuItem2	16	static
+lcd_menu.c:88:13:renderingAction	24	static
+lcd_menu.c:99:6:menu_show	8	static
+lcd_menu.c:110:12:menu_update	24	static
