@@ -1,0 +1,35 @@
+#ifndef rgb_H
+#define rgb_H
+
+#include "main.h"
+
+
+
+
+typedef struct RGB{
+	uint32_t Red;
+	uint32_t Green;
+	uint32_t Blue;
+}RGB;
+
+void setRGB(RGB rgb, int tempCelsius)
+{
+//	if (tempCelsius >10.00){
+//		rgb.Blue = 100;
+//	}
+//	if (tempCelsius <15.00) {
+//		rgb.Red = 100;
+//	}
+//	if (tempCelsius>0 && tempCelsius<35) {
+//		rgb.Green = 100;
+//	}
+
+	htim3.Instance->CCR1 = 50;
+	htim3.Instance->CCR2 = 50;
+	htim1.Instance->CCR2 = 50;
+
+
+}
+
+#endif // JOYSTICK_H
+
