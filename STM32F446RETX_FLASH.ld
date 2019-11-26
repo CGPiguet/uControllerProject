@@ -59,12 +59,15 @@ _Min_Heap_Size = 0x200 ;	/* required amount of heap  */
 _Min_Stack_Size = 0x400 ;	/* required amount of stack */
 
 /* Memories definition */
+    
 MEMORY
 {
     RAM	(xrw)	: ORIGIN = 0x20000000,	LENGTH = 128K
-    FLASH	(rx)	: ORIGIN = 0x8000000,	LENGTH = 512K
-}
 
+    FLASH	(rx)	: ORIGIN = 0x8000000,	LENGTH = 512K-128k
+    DATA (RWX)        : ORIGIN = 0x080E0000, LENGTH = 128k
+}
+/* Flash and DATA MODIFIED*/
 /* Sections */
 SECTIONS
 {
@@ -198,3 +201,10 @@ SECTIONS
 
   .ARM.attributes 0 : { *(.ARM.attributes) }
 }
+/*MODIFIED*/
+.user_data :
+{
+  . = ALIGN(4);
+     *(.user_data)
+  . = ALIGN(4);
+} > DATA

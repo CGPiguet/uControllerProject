@@ -49,6 +49,8 @@ float 	temperatureDisplay;
 
 int flagTemp = 0;
 int flagDebug = 0;
+
+
 //bool flagSwitchUpPressed = false;
 
 /* USER CODE END PD */
