@@ -6,50 +6,78 @@
 
 
 
-typedef struct RGB{
-	uint32_t Red;
-	uint32_t Green;
-	uint32_t Blue;
-}RGB;
+struct RGB{
+	uint32_t Red,Green,Blue;
+};
+typedef struct RGB rgbStruct;
 
-void setRGB(RGB rgb, int tempCelsius)
+struct linearVariable{
+	float a,b;
+};
+typedef struct linearVariable lvStruct;
+lvStruct findLinear(int min, int max)
+{
+
+	lvStruct s;
+	s.a = -98/(max-min);
+	s.b = -(-99*max+min)/(max-min);
+	return s;
+}
+
+void setRGB(int tempCelsius)
 {
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
-	tempCelsius = tempCelsius-20;
+//	tempCelsius = tempCelsius-20;
 
+
+	int redMax = 40;
+	int redMin = 10;
+	int greenMinStart = 0;
+	int greenMaxMedium = 15;
+	int greenMinEnd = 30;
+	int blueMax = -20;
+	int blueMin = 0;
+	lvStruct redValue 			= findLinear(redMin, redMax);
+	lvStruct greenValueFirst 	= findLinear(greenMinStart, greenMaxMedium);
+	lvStruct greenValueSecond	= findLinear(greenMinEnd, greenMaxMedium);
+	lvStruct blueValue 			= findLinear(blueMin, blueMax);
+	rgbStruct rgb;
 
 	// Red condition
-	if (tempCelsius<20) {
+	if (tempCelsius<redMin) {
 		rgb.Red = 100;
 	}
-	else if ((tempCelsius>20 && tempCelsius<40)) {
-		rgb.Red = (-49/50)*tempCelsius + 197;
+	else if ((tempCelsius>redMin && tempCelsius<redMax)) {
+		rgb.Red = redValue.a*tempCelsius + redValue.b;
 	}
-	else if (tempCelsius>40) {
+	else if (tempCelsius>redMax) {
 		rgb.Red = 1;
 	}
 
 	// Green condition
-	if (tempCelsius<0) {
+	if (tempCelsius<greenMinStart) {
 		rgb.Green = 100;
 	}
-	else if ((tempCelsius>0 && tempCelsius<30)) {
-		rgb.Green = (-98/25)*tempCelsius + (593/5);
+	else if ((tempCelsius>greenMinStart && tempCelsius<greenMaxMedium)) {
+		rgb.Green = greenValueFirst.a*tempCelsius + greenValueFirst.b;
 	}
-	else if (tempCelsius > 30) {
+	else if ((tempCelsius>greenMaxMedium && tempCelsius<greenMinEnd)) {
+		rgb.Green = greenValueSecond.a*tempCelsius + greenValueSecond.b;
+	}
+	else if (tempCelsius > greenMinEnd) {
 		rgb.Green = 100;
 	}
 
 	// Blue condition
-	if (tempCelsius<-10) {
+	if (tempCelsius<blueMax) {
 		rgb.Blue = 1;
 	}
-	else if ((tempCelsius>-10 && tempCelsius<5)) {
-		rgb.Blue = (98/15)*tempCelsius + (199/3);
+	else if ((tempCelsius>blueMax && tempCelsius<blueMin)) {
+		rgb.Blue = blueValue.a*tempCelsius + blueValue.b;
 	}
-	else if (tempCelsius>5) {
+	else if (tempCelsius>blueMin) {
 		rgb.Blue = 100;
 	}
 
@@ -60,6 +88,7 @@ void setRGB(RGB rgb, int tempCelsius)
 
 
 }
+
 
 #endif // JOYSTICK_H
 

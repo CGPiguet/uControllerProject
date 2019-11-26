@@ -38,7 +38,7 @@ all: uControllerProject.elf secondary-outputs
 
 # Tool invocations
 uControllerProject.elf: $(OBJS) $(USER_OBJS) C:\MEGA\UniBE\3rdSemester\101720-HS2019-0-Programming\ of\ Microcontrollers\uControllers_Projects_1.0.2\uControllerProject\STM32F446RETX_FLASH.ld
-	arm-none-eabi-gcc -o "uControllerProject.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\MEGA\UniBE\3rdSemester\101720-HS2019-0-Programming of Microcontrollers\uControllers_Projects_1.0.2\uControllerProject\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="uControllerProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "uControllerProject.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\MEGA\UniBE\3rdSemester\101720-HS2019-0-Programming of Microcontrollers\uControllers_Projects_1.0.2\uControllerProject\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="uControllerProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
